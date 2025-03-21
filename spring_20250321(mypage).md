@@ -455,4 +455,16 @@ catch (IOException ex) {
 
 ```
 
+```xml 
+    <!-- root-contenxt -->
+
+    
+	<bean id="multipartResolver" 
+	      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	 		<property name="maxUploadSize" value="104857600" />
+	 		<property name="maxUploadSizePerFile" value="104857600" />
+	 		<property name="maxInMemorySize" value="104857600" />
+	 </bean>
+```
+
 ## 질문 

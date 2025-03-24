@@ -12,7 +12,7 @@
 
 - \( w \): 기울기 (weight)
 - \( b \): 절편 (bias)
-- \( \hat{y} \): 예측값
+- ![yhat](https://latex.codecogs.com/svg.image?\hat{y}): 예측값
 
 이 직선이 데이터의 분포를 가장 잘 설명하도록 만드는 것이 학습의 목표입니다.
 
@@ -22,7 +22,7 @@
 
 ### 왜 필요한가?
 
-모델이 예측한 값 \( \hat{y} \)가 실제 값 \( y \)와 얼마나 차이가 나는지를 수치로 표현해야 합니다. 그 차이를 측정하는 함수가 손실 함수입니다.
+모델이 예측한 값  ![yhat](https://latex.codecogs.com/svg.image?\hat{y}) 가 실제 값 \( y \)와 얼마나 차이가 나는지를 수치로 표현해야 합니다. 그 차이를 측정하는 함수가 손실 함수입니다.
 
 ### 평균 제곱 오차 (MSE, Mean Squared Error)
 
@@ -85,8 +85,8 @@
 w := w - alpha * (∂L/∂w)
 ```
 
-- \( \frac{\partial \mathcal{L}}{\partial w} \) 가 **양수**: 현재 위치가 오르막 → 더 내려가려면 **w를 줄여야** 함
-- \( \frac{\partial \mathcal{L}}{\partial w} \) 가 **음수**: 현재 위치가 내리막 → 더 내려가려면 **w를 키워야** 함
+- ![편미분](https://latex.codecogs.com/svg.image?\frac{\partial%20\mathcal{L}}{\partial%20w}) 가 **양수**: 현재 위치가 오르막 → 더 내려가려면 **w를 줄여야** 함
+- ![편미분](https://latex.codecogs.com/svg.image?\frac{\partial%20\mathcal{L}}{\partial%20w}) 가 **음수**: 현재 위치가 내리막 → 더 내려가려면 **w를 키워야** 함
 
 이렇게 기울기의 부호를 기준으로 **손실을 줄이는 방향**으로 이동합니다.
 

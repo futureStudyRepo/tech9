@@ -52,6 +52,14 @@ Spring Security를 사용하기 위해 필요한 의존성을 `pom.xml`에 추�
 
 ```xml
 <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+```
+
+```web.xml
+	<param-value>/WEB-INF/spring/appServlet/servlet-context.xml
+                    /WEB-INF/spring/appServlet/security-context.xml
+    </param-value>
+
 ```
 
 이 빈을 통해 암호화를 수행하며, 주로 비밀번호를 암호화한 후 데이터베이스에 저장할 때 사용됩니다.

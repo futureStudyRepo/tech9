@@ -68,7 +68,7 @@
 
 여러 변수 중 **하나의 변수만 변할 때 함수가 얼마나 변하는지**를 나타내는 도구입니다.
 
-\( \frac{\partial \mathcal{L}}{\partial w} \): \( w \)가 바뀔 때 손실이 얼마나 바뀌는가
+![수식 보기](https://latex.codecogs.com/svg.image?\frac{\partial\mathcal{L}}{\partial{w}}): \( w \)가 바뀔 때 손실이 얼마나 바뀌는가
 
 ### 예: \( w \)에 대한 편미분 수식
 

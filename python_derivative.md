@@ -39,7 +39,8 @@
 
 ### 목적
 
-손실 함수 \( \mathcal{L}(w, b) \)를 가장 작게 만드는 \( w \), \( b \) 값을 찾는 것.
+
+손실 함수 ![손실함수](https://latex.codecogs.com/svg.image?\\mathcal{L}) (w, b) 를 가장 작게 만드는 \( w \), \( b \) 값을 찾는 것.
 
 ### 경사 하강법 (Gradient Descent)
 

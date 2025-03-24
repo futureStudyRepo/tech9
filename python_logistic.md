@@ -30,7 +30,7 @@
 
 공식:
 
-![sigmoid](https://latex.codecogs.com/svg.image?\sigma(z)%20%3D%20+rac{1}{1%2Be^{-z}})
+![sigmoid](https://latex.codecogs.com/svg.image?\sigma(z)%20=%20\frac{1}{1+e^{-z}})
 
 로지스틱 회귀의 예측은 아래와 같습니다:
 

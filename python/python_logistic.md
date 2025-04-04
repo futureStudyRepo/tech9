@@ -43,10 +43,9 @@
 
 아래는 시그모이드 함수의 시각화 예시입니다. z가 클수록 1에 가까워지고, 작을수록 0에 가까워지는 S자 곡선입니다:
 
-> 참고: 아래 이미지는 로컬 문서 또는 GitHub에서 `./img/sigmoid_plot.png` 위치에 있다고 가정합니다.
 . z가 클수록 1에 가까워지고, 작을수록 0에 가까워지는 S자 곡선입니다:
 
-![Sigmoid Function Graph](./img/sigmoid_plot.png)
+![Sigmoid Function Graph](../img/sigmoid_plot.png)
 
 ---
 

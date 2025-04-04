@@ -8,7 +8,6 @@
  -  spring security, 
 
 ---
-<!-- ![spring](./img/spring.svg) -->
 
 ## 주요 개념
 

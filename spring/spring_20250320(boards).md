@@ -8,7 +8,6 @@
 postMapping, Model, c:if, c:forEach
 
 ---
-<!-- ![spring](./img/spring.svg) -->
 
 ## 주요 개념
 

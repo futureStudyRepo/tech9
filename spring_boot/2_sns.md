@@ -18,7 +18,6 @@ Spring Boot에서 **Thymeleaf**를 권장하는 이유 ?
     <artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
 ```
-
 ---
 
 ### ✅ 2. **HTML5 기반 템플릿 – 브라우저에서 바로 열람 가능**

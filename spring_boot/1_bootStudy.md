@@ -20,7 +20,7 @@
 | **템플릿 엔진** | **JSP + JSTL** (`tomcat-embed-jasper`, `jakarta.servlet.jsp.jstl`) |
 | **ORM/DB 연동** | MyBatis (`mybatis-spring-boot-starter`, 3.0.3) |
 | **데이터베이스** | Oracle (`ojdbc11`, `runtime`) |
-| **서버 설정** | 내장 톰캣 제거 (`provided` scope), WAR로 외부 톰캣 배포 |
+| **서버 설정** | 내장 톰캣  |
 | **JDBC 사용** | `spring-boot-starter-jdbc` 포함 |
 | **테스트 환경** | JUnit + MyBatis 테스트 지원 포함 |
 | **개발 편의 도구** | Lombok 사용 (`optional`) |
@@ -90,11 +90,9 @@ mybatis.configuration.jdbc-type-for-null=varchar
 
 - mybatis mapper(member.xml)
 ```xml
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.future.my.member.dao.IMemberDAO">
-	
 	<select id="memList" resultType="com.future.my.member.vo.MemberVO">
 		SELECT mem_id
 		     , mem_nm
@@ -104,7 +102,6 @@ mybatis.configuration.jdbc-type-for-null=varchar
 </mapper>
 
 ```
-
 ---
 | 프로젝트 | 템플릿 | DB | ORM | 배포 방식 | 특징 |
 |----------|--------|-----|------|------------|--------|

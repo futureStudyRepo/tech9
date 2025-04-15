@@ -81,3 +81,97 @@ print(text_classifier(text))
 | 4세대 | BERT | 최고 정확도 | GPU 자원 필요 |
 
 
+물론입니다! 아래는 각 기술별로 간단한 **예시 코드**만 따로 정리한 것입니다.  
+
+---
+
+## 🧩 1. BoW / TF-IDF 예시 (scikit-learn)
+
+```python
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
+texts = ["오늘 날씨가 정말 좋다", "오늘은 기분이 너무 좋아", "비가 와서 우울해"]
+
+# BoW
+bow_vectorizer = CountVectorizer()
+bow = bow_vectorizer.fit_transform(texts)
+print("BoW:\n", bow.toarray())
+
+# TF-IDF
+tfidf_vectorizer = TfidfVectorizer()
+tfidf = tfidf_vectorizer.fit_transform(texts)
+print("TF-IDF:\n", tfidf.toarray())
+```
+
+---
+
+## 🧬 2. Word2Vec 임베딩 예시 (gensim)
+
+```python
+from gensim.models import Word2Vec
+
+sentences = [["오늘", "날씨", "좋다"], ["기분", "좋아"], ["비", "우울"]]
+model = Word2Vec(sentences, vector_size=100, window=2, min_count=1, sg=0)  # CBOW
+
+print("기분 벡터:\n", model.wv["기분"])
+print("유사도(기분, 좋아):", model.wv.similarity("기분", "좋아"))
+```
+
+---
+
+## 🧠 3. LSTM 분류기 예시 (PyTorch)
+
+```python
+import torch.nn as nn
+
+class SimpleLSTMClassifier(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.lstm = nn.LSTM(embedding_dim, hidden_dim, batch_first=True)
+        self.fc = nn.Linear(hidden_dim, output_dim)
+
+    def forward(self, x):
+        embedded = self.embedding(x)
+        _, (hidden, _) = self.lstm(embedded)
+        return self.fc(hidden[-1])
+```
+
+> ※ 학습용 데이터와 토크나이징은 생략
+
+---
+
+## 🔮 4. BERT 분류 예시 (transformers)
+
+```python
+from transformers import BertTokenizer, BertForSequenceClassification
+from transformers import pipeline
+
+model_name = "bert-base-multilingual-cased"
+tokenizer = BertTokenizer.from_pretrained(model_name)
+model = BertForSequenceClassification.from_pretrained(model_name, num_labels=2)
+
+classifier = pipeline("text-classification", model=model, tokenizer=tokenizer)
+print(classifier("오늘 정말 기분이 좋다!"))
+```
+
+---
+
+## 🧠 5. 한국어 분류 모델 예시 (KcELECTRA)
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+
+model_name = "beomi/KcELECTRA-base"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=3)
+
+text_classifier = pipeline("text-classification", model=model, tokenizer=tokenizer)
+print(text_classifier("진짜 이 영상 너무 웃겨요 ㅋㅋ"))
+```
+
+---
+
+
+
+

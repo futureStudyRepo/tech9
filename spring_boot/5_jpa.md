@@ -1,5 +1,5 @@
 # 조합:  Spring Boot + JPA + Thymeleaf + H2
-## PWA(Progressive Web App) 기능 구현 
+## JPA 구현 
 
 ## ✅ 1. **`jpa` 프로젝트**  
 > **조합:** Spring Boot + JPA + Thymeleaf + H2

@@ -69,14 +69,98 @@ chrome.runtime.onMessage.addListener((req, sender, res) => {
 ## 3. 🧩 content.js – 드래그 영역 선택 및 OCR 처리
 
 ```javascript
-chrome.runtime.onMessage.addListener((req) => {
-  if (req.action === 'startDrag') {
-    document.body.style.cursor = 'crosshair';
-    document.addEventListener('mousedown', startSelection);
-    document.addEventListener('mousemove', drawSelection);
-    document.addEventListener('mouseup', endSelection);
-  }
+var startX, startY, endX, endY;
+var selectionBox;
+var isDragging = false;
+
+// 메시지 수신 대기
+chrome.runtime.onMessage.addListener((req)=>{
+     if(req.action === 'startDrag'){
+        document.body.style.cursor = 'crosshair';
+        document.addEventListener('mousedown', startSelection);
+        document.addEventListener('mousemove', drawSelection);
+        document.addEventListener('mouseup', endSelection);
+     }
 });
+
+function startSelection(event){
+    isDragging = true;
+    startX = event.clientX + window.scrollX;
+    startY = event.clientY + window.scrollY;
+
+    // 선택 상자 초기화
+    selectionBox = document.createElement('div');
+    selectionBox.style.position = 'absolute';
+    selectionBox.style.border = '2px dashed blue';
+    selectionBox.style.backgroundColor = 'rgba(0, 0, 255, 0.3)';
+    selectionBox.style.left = `${startX}px`;
+    selectionBox.style.top = `${startY}px`;
+    selectionBox.style.pointerEvents ='none';
+    document.body.appendChild(selectionBox);
+}
+function drawSelection(event){
+    if(!isDragging)return;
+    endX = event.clientX + window.scrollX;
+    endY = event.clientY + window.scrollY;
+
+    selectionBox.style.width = `${Math.abs(endX - startX)}px`;
+    selectionBox.style.height = `${Math.abs(endY - startY)}px`;
+    selectionBox.style.left = `${Math.min(startX, endX)}px`;
+    selectionBox.style.top = `${Math.min(startY, endY)}px`;
+}
+function endSelection(){
+    if(!isDragging)return;
+    isDragging = false;
+    try{
+        // 선택 영역 캔버스에 그려서 자른 이미지를 전송!
+        chrome.runtime.sendMessage({action:"captureVisibleTab"},(res)=>{
+               console.log(res);
+              if(chrome.runtime.lastError || !res.imageUri){
+                  console.log("캡처 요청 실패:", chrome.runtime.lastError);
+                  return;
+              }
+              const imageUri = res.imageUri;
+              // 이미지를 로드하여 선택 영역으로 자름
+              let image = new Image();
+              image.src = imageUri;
+              image.onload = ()=>{
+                   const canvas = document.createElement('canvas');
+                   const ctx = canvas.getContext('2d');
+                   // 선택 영역 크기로 캔버스에 그림
+                   const w = Math.abs(endX - startX);
+                   const h = Math.abs(endY - startY);
+                   canvas.width = w;
+                   canvas.height =h;
+                   const x = Math.min(startX, endX);
+                   const y = Math.min(startY, endY);
+                   ctx.drawImage(image, x , y , w, h, 0, 0, w, h);
+                   //서버로 전송
+                   canvas.toBlob((blob)=>{
+                         const formData = new FormData();
+                         formData.append('image', blob, 'capture.png');
+                         fetch("http://localhost:5000/ocr",{
+                            method:"POST",
+                            body:formData
+                         })
+                         .then(res=>res.json())
+                         .then(data =>{
+                            alert("번역 내용:" + data.translation);
+                         })
+                         .catch(e => console.error("error:",e));
+                   }, 'image/png');
+              };
+        });
+    }finally{
+        document.body.style.cursor = 'default';
+        if(selectionBox){
+            document.body.removeChild(selectionBox);
+            selectionBox = null;
+        }
+        document.removeEventListener('mousedown', startSelection);
+        document.removeEventListener('mousemove', drawSelection);
+        document.removeEventListener('mouseup', endSelection);
+    }
+}
 ```
 
 - 마우스 드래그로 시작점과 끝점을 기록하고 사각형 표시

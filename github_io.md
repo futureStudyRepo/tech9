@@ -280,3 +280,69 @@ https://사용자명.github.io/레포지토리명/
 - CSS/JS 안 먹는 경우: 상대경로, 파일 위치 확인
 
 ---
+
+# ✅ Jekyll 테마 쉽게 변경하는 방법
+
+## 방법 1. GitHub Pages에서 기본 테마 설정 (가장 쉬움)
+1. `_config.yml` 파일 열기  
+2. 아래처럼 `theme:` 설정만 바꿔주면 끝!
+
+```yaml
+theme: minima   # 기본 테마 이름
+```
+
+- 바꿀 수 있는 공식 테마 예시:
+  - `minima`
+  - `jekyll-theme-cayman`
+  - `jekyll-theme-hacker`
+  - `jekyll-theme-midnight`
+  - `jekyll-theme-slate`
+  - `jekyll-theme-modernist`
+
+> 설정 후 GitHub에 푸시하면 자동 적용됨  
+> [공식 테마 목록](https://pages.github.com/themes/) 참고
+
+---
+
+## 방법 2. 로컬에서 커스텀 테마 사용
+
+1. 예쁜 테마 다운로드 (예: Minimal Mistakes)
+```bash
+git clone https://github.com/mmistakes/minimal-mistakes.git my-site
+cd my-site
+bundle install
+```
+
+2. `_config.yml`과 `_posts/` 폴더 수정해서 내 블로그로 맞춤
+
+---
+
+# ✅ 유명한 예쁜 Jekyll 테마 예시 사이트
+
+| 테마 이름 | 미리보기 | 깃허브 링크 |
+|-----------|----------|--------------|
+| **Minimal Mistakes** | https://mmistakes.github.io/minimal-mistakes/ | https://github.com/mmistakes/minimal-mistakes |
+| **Chirpy** | https://chirpy.cotes.page/ | https://github.com/cotes2020/jekyll-theme-chirpy |
+| **TeXt** | https://kitian616.github.io/jekyll-TeXt-theme/ | https://github.com/kitian616/jekyll-TeXt-theme |
+| **Tale** | https://chesterhow.github.io/tale/ | https://github.com/chesterhow/tale |
+| **Lagrange** | https://lenpaul.github.io/Lagrange/ | https://github.com/LeNPaul/Lagrange |
+
+---
+
+## ✅ 예시 적용 (_config.yml)
+
+```yaml
+title: 내 블로그 제목
+description: 내 블로그 설명
+theme: jekyll-theme-cayman    # 테마만 바꿔도 적용됨
+```
+
+---
+
+## ✅ 팁: GitHub Pages에서 바로 바꾸는 법
+
+1. GitHub 저장소 > Settings > Pages
+2. `Theme Chooser` 클릭
+3. 원하는 테마 고르고 저장하면 자동 적용됨
+
+---

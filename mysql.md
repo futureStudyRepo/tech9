@@ -1,4 +1,4 @@
-# 📘 Oracle 경험자를 위한 EC2 MySQL 설치 및 사용 가이드
+# 📘 EC2 MySQL 설치 및 사용 가이드
 
 > AWS EC2에 MySQL을 설치하고 Workbench로 연동
 

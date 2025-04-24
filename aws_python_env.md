@@ -197,4 +197,4 @@ tail -f gunicorn_error.log
 ## 없으면 아래 추가
 ```export PATH="$HOME/miniconda3/bin:$PATH"```
 ## 저장 후 적용
-``` source ~/.bashr ```
+``` source ~/.bashrc ```

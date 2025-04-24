@@ -190,3 +190,11 @@ tail -f gunicorn_error.log
 | 보안 그룹 설정 | AWS에서 5000 포트 열기 필수 |
 
 ---
+
+# 콘다명령어 안될때(설치했고)
+## 환경변수에 콘다 설치 경로 있는지 체크 
+```nano ~/.bashrc ```
+## 없으면 아래 추가
+```export PATH="$HOME/miniconda3/bin:$PATH"```
+## 저장 후 적용
+``` source ~/.bashr ```
